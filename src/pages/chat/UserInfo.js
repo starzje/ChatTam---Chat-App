@@ -1,5 +1,5 @@
 import { db } from "../../firebase";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, setDoc } from "firebase/firestore";
 import Avatar from "react-avatar";
 import { auth } from "../../firebase";
 import { query, collection, where, getDocs } from "firebase/firestore";
@@ -8,37 +8,19 @@ const UserInfo = ({ user, handleClickUser }) => {
   const logoutOfApp = async () => {
     const q = query(collection(db, "userInfo"), where("uid", "==", user.uid));
     const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+    querySnapshot.forEach((docSnapShot) => {
+      console.log(docSnapShot.data());
       try {
-        updateDoc(doc.ref, {
+        updateDoc(doc(db, "userInfo", docSnapShot.id), {
+          ...docSnapShot.data(),
           isOnline: false,
         });
       } catch (error) {
         console.log(error);
       }
     });
-    //   updateDoc(doc.ref, {
-    //     isOnline: false,
-    //   });
-    // });
-
     auth.signOut();
   };
-
-  // const logoutOfApp = async () => {
-  //   const userRef = doc(db, "userInfo", user.uid);
-  //   await updateDoc(userRef, {
-  //     isOnline: false,
-  //   })
-  //     .then(() => {
-  //       auth.signOut();
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
 
   return (
     <>

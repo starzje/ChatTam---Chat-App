@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 //firebase
-import { auth, signInWithEmailAndPassword } from "../../firebase";
+import { auth, signInWithEmailAndPassword, db } from "../../firebase";
+import {
+  query,
+  collection,
+  where,
+  getDocs,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 // redux and react-router-dom
 import { login, selectUser } from "../../store/features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +34,22 @@ function Login() {
     }
   }, [user, navigate]);
 
+  const setOnlineStatus = async (userID) => {
+    const q = query(collection(db, "userInfo"), where("uid", "==", userID));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((docSnapShot) => {
+      console.log(docSnapShot.data());
+      try {
+        updateDoc(doc(db, "userInfo", docSnapShot.id), {
+          ...docSnapShot.data(),
+          isOnline: true,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  };
+
   // login user
   const loginToApp = (e) => {
     e.preventDefault();
@@ -36,6 +60,10 @@ function Login() {
     const idToast = toast.loading("Logging in...");
 
     signInWithEmailAndPassword(auth, email, password)
+      .then((userAuth) => {
+        setOnlineStatus(userAuth.user.uid);
+      })
+
       .then((userAuth) => {
         dispatch(
           login({

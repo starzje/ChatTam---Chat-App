@@ -29,7 +29,7 @@ const SendMessage = ({ scroll, roomId }) => {
 
   return (
     <div
-      className={`mt-auto pt-6 z-20 bg-hero-pattern bg-cover bg-bottom fixed bottom-0  md:w-[65%] 2xl:w-[65.7%] pb-7 px-5 md:px-20`}>
+      className={`mt-auto pt-6 z-20 bg-hero-pattern bg-cover bg-bottom fixed bottom-0 w-full md:w-[65%] 2xl:w-[65.7%] pb-7 px-5 md:px-20`}>
       <form onSubmit={sendMessage} className=" w-full flex text-xl ">
         <input
           value={input}
