@@ -128,6 +128,7 @@ const Homepage = () => {
           }}
           className="mt-20 md:mt-0">
           <img
+            loading="lazy"
             className="object-cover"
             src="./assets/hero.png"
             alt="chat screen"

@@ -22,10 +22,10 @@ function App() {
   const location = useLocation();
 
   // console log user
-  const { loading, user } = useSelector(selectUser);
-  if (!loading) {
-    console.log(user);
-  }
+  // const { loading, user } = useSelector(selectUser);
+  // if (!loading) {
+  //   console.log(user);
+  // }
 
   // check if user is logged in
   useEffect(() => {

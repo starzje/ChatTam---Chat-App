@@ -18,7 +18,7 @@ const UserList = ({ user, handleClickUser }) => {
         {user.name}
       </p>
 
-      {user ? (
+      {user.isOnline ? (
         <div className="bg-green-500 h-3 w-3 rounded-full"></div>
       ) : (
         <div className="bg-red-500 h-3 w-3 rounded-full"></div>
