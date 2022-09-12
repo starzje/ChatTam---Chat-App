@@ -12,12 +12,12 @@ const style = {
 // message styling depending on who sent the message
 const Message = ({ message, image }) => {
   const messageClass =
-    message.uid === auth.currentUser.uid
+    message.uid === auth.currentUser?.uid
       ? ` ${style.sent}`
       : `${style.received}`;
 
   const nameClass =
-    message.uid === auth.currentUser.uid
+    message.uid === auth.currentUser?.uid
       ? ` ${style.name} right-0`
       : `${style.name} left-0`;
 
@@ -37,7 +37,7 @@ const Message = ({ message, image }) => {
         <Avatar
           src={singleUserImage.toString()}
           className={` ${
-            message.uid === auth.currentUser.uid
+            message.uid === auth.currentUser?.uid
               ? "float-right  mt-2.5 "
               : "float-left mt-2.5"
           } `}

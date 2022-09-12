@@ -5,8 +5,8 @@ import { auth, onAuthStateChanged } from "./firebase";
 import { Routes, Route, useLocation } from "react-router-dom";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 // redux
-import { login, logout, selectUser } from "./store/features/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { login, logout } from "./store/features/userSlice";
+import { useDispatch } from "react-redux";
 // components
 import Chat from "./pages/chat/Chat";
 import Homepage from "./pages/Home/Homepage";
@@ -20,12 +20,6 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
-
-  // console log user
-  // const { loading, user } = useSelector(selectUser);
-  // if (!loading) {
-  //   console.log(user);
-  // }
 
   // check if user is logged in
   useEffect(() => {

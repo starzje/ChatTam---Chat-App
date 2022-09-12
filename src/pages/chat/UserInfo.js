@@ -1,5 +1,5 @@
 import { db } from "../../firebase";
-import { doc, updateDoc, setDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import Avatar from "react-avatar";
 import { auth } from "../../firebase";
 import { query, collection, where, getDocs } from "firebase/firestore";
@@ -10,6 +10,7 @@ const UserInfo = ({ user, handleClickUser }) => {
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((docSnapShot) => {
       console.log(docSnapShot.data());
+      console.log(docSnapShot.id);
       try {
         updateDoc(doc(db, "userInfo", docSnapShot.id), {
           ...docSnapShot.data(),
@@ -19,7 +20,10 @@ const UserInfo = ({ user, handleClickUser }) => {
         console.log(error);
       }
     });
-    auth.signOut();
+    // execute the following function after 3 seconds
+    setTimeout(() => {
+      auth.signOut();
+    }, 1500);
   };
 
   return (
