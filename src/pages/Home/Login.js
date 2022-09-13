@@ -23,6 +23,9 @@ import {
   formModalAnimation,
 } from "../../helpers/animations";
 import { validateLoginForm } from "../../helpers/formValidation";
+//components
+import Form from "../../components/Form";
+import Button from "../../components/Button";
 
 function Login() {
   const dispatch = useDispatch();
@@ -103,7 +106,7 @@ function Login() {
         animate="visible"
         exit="exit"
         className=" shadow-2xl min-w-[25em] ">
-        <div className="bg-gradient-to-r from-[#252e47] to-[#1c1c32] py-3 rounded-t-3xl w-full opacity-60 ">
+        <div className="bg-gradient-dark-r py-3 rounded-t-3xl w-full opacity-60 ">
           <h4 className="text-white  tracking-wide font-semibold text-center">
             #LOGIN
           </h4>
@@ -111,44 +114,19 @@ function Login() {
         <div className="bg-[#141223] p-10 w-full rounded-b-3xl">
           {/* FORM */}
           <form onSubmit={loginToApp} className="flex flex-col">
-            {/* email */}
-            <label
-              className="text-white text-md font-light pl-4 mb-2"
-              htmlFor="email">
-              Email
-            </label>
-            <input
-              className="bg-[#2D2A46] text-white placeholder:opacity-50 rounded-full px-4 py-2 mb-4 outline-none "
-              placeholder="john.doe@gmail.com"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+            <Form
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
             />
-
-            {/* password */}
-            <label
-              className="text-white text-md  font-light pl-4 mb-2"
-              htmlFor="password">
-              Password
-            </label>
-            <input
-              className="bg-[#2D2A46] placeholder:opacity-50  text-white rounded-full px-4 py-2 mb-4 outline-none"
-              placeholder="********"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-
             {/* submit button */}
-            <button
-              className="bg-primary-violet transition duration-300 hover:bg-primary-hover rounded-full text-white py-2 w-full mt-4 font-semibold tracking-widest flex justify-center items-center gap-2"
-              type="submit"
-              onClick={loginToApp}>
-              LOGIN
-              <FaSignInAlt />
-            </button>
+            <Button
+              text="LOGIN"
+              icon={<FaSignInAlt />}
+              handleClick={loginToApp}
+            />
           </form>
-
           {/* REGISTER LINK */}
           <div className="text-center mt-10">
             <span className="text-white ">Not a member? </span>

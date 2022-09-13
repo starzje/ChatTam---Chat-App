@@ -11,6 +11,7 @@ import {
 import Avatar from "react-avatar";
 import { toast } from "react-toastify";
 import { FaSignOutAlt } from "react-icons/fa";
+import Button from "../../components/Button";
 
 const UserInfo = ({ user, handleClickUser }) => {
   // change online status to false and update last time online, then sign user out
@@ -58,13 +59,11 @@ const UserInfo = ({ user, handleClickUser }) => {
               {user.displayName}
             </span>{" "}
           </h2>
-
-          <button
-            className="ml-auto bg-primary-violet py-2 px-6  hover:bg-primary-hover rounded-xl flex justify-center items-center gap-2"
-            onClick={guestLogout}>
-            Logout
-            <FaSignOutAlt />
-          </button>
+          <Button
+            text="Logout"
+            icon={<FaSignOutAlt />}
+            handleClick={guestLogout}
+          />
         </>
       ) : (
         <>
@@ -89,12 +88,11 @@ const UserInfo = ({ user, handleClickUser }) => {
             </p>
           </div>
 
-          <button
-            className="ml-auto bg-primary-violet py-2 px-6 hover:bg-primary-hover rounded-xl flex justify-center items-center gap-2"
-            onClick={logoutOfApp}>
-            Logout
-            <FaSignOutAlt />
-          </button>
+          <Button
+            text="Logout"
+            icon={<FaSignOutAlt />}
+            handleClick={logoutOfApp}
+          />
         </>
       )}
     </>

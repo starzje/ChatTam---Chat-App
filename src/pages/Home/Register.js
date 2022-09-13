@@ -28,6 +28,9 @@ import {
   validateUsernameInput,
   validateUsernameLength,
 } from "../../helpers/formValidation";
+// components
+import Form from "../../components/Form";
+import Button from "../../components/Button";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -141,7 +144,7 @@ const Register = () => {
         animate="visible"
         exit="exit"
         className=" shadow-2xl min-w-[27em]">
-        <div className="bg-gradient-to-r from-[#252e47] to-[#1c1c32] py-3 rounded-t-3xl w-full opacity-60 ">
+        <div className="bg-gradient-dark-r py-3 rounded-t-3xl w-full opacity-60 ">
           <h4 className="text-white  tracking-wide font-semibold text-center">
             #REGISTER
           </h4>
@@ -172,43 +175,18 @@ const Register = () => {
               required
             />
 
-            {/* email */}
-            <label
-              className="text-white text-md font-light pl-4 mb-2"
-              htmlFor="email">
-              Email
-            </label>
-            <input
-              title="Must be a valid email"
-              className="bg-[#2D2A46] text-white placeholder:opacity-50 rounded-full px-4 py-1 2xl:py-2 mb-4 outline-none "
-              placeholder="john.doe@gmail.com"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required></input>
-
-            {/* password */}
-            <label
-              className="text-white text-md  font-light pl-4 mb-2"
-              htmlFor="password">
-              Password
-            </label>
-            <input
-              title="Must have at least 6 characters"
-              className="bg-[#2D2A46] placeholder:opacity-50  text-white rounded-full px-4 py-1 2xl:py-2 mb-4 outline-none"
-              placeholder="Must have at least 6 characters"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+            <Form
+              email={email}
+              setEmail={setEmail}
+              password={password}
+              setPassword={setPassword}
             />
-
             {/* error */}
             <div
               className="mb-2 ml-1  text-left text-red-500"
               ref={errorFeedback}></div>
             {/* Upload image */}
-            <label className="w-full mb-4 mt-3  transition duration-300 flex-col items-center px-4 py-2 bg-[#2D2A46] text-white rounded-full shadow-lg tracking-wide uppercase cursor-pointer hover:bg-primary-hover hover:text-white hidden md:flex">
+            <label className="w-full mb-4   transition duration-300 flex-col items-center px-4 py-2 bg-[#2D2A46] text-white rounded-full shadow-lg tracking-wide uppercase cursor-pointer hover:bg-primary-hover hover:text-white hidden md:flex">
               <div className="flex justify-center items-center gap-5">
                 <svg
                   className="w-7 h-7"
@@ -229,13 +207,11 @@ const Register = () => {
             </label>
 
             {/* submit button */}
-            <button
-              className="bg-primary-violet transition duration-300  hover:bg-primary-hover rounded-full text-white py-2 w-full mt-4 font-semibold tracking-widest flex justify-center items-center gap-2"
-              type="submit"
-              onClick={handleSubmit}>
-              REGISTER
-              <FaUserPlus />
-            </button>
+            <Button
+              text="Register"
+              icon={<FaUserPlus />}
+              handleClick={handleSubmit}
+            />
           </form>
 
           {/* LOGIN LINK */}

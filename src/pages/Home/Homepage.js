@@ -89,14 +89,10 @@ const Homepage = () => {
                 ease: "easeInOut",
               }}
               className="flex gap-7 2xl:mb-7 mb-5">
-              <Link
-                className="bg-primary-violet flex justify-center items-center gap-2 text-white text-center hover:bg-primary-hover py-2 w-full  rounded-xl transition duration-300"
-                to="../login">
+              <Link className="btn-purple" to="../login">
                 Login <FaSignInAlt />
               </Link>
-              <Link
-                className="bg-primary-violet flex justify-center items-center gap-2 text-white text-center hover:bg-primary-hover py-2 w-full rounded-xl transition duration-300 "
-                to="../register">
+              <Link className="btn-purple" to="../register">
                 Register
                 <FaUserPlus />
               </Link>
@@ -105,7 +101,7 @@ const Homepage = () => {
               variants={buttonAnimation}
               initial="hidden"
               animate="visible"
-              className="bg-secondary-violet flex justify-center items-center font-medium tracking-wide uppercase gap-2 hover:bg-secondary-hover transition duration-300  rounded-xl text-white py-2 w-full"
+              className="btn-dark "
               type="submit"
               onClick={handleGuestLogin}>
               Login as guest
