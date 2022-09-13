@@ -23,30 +23,21 @@ const Homepage = () => {
   const handleGuestLogin = (e) => {
     const idToast = toast.loading("Logging in as guest...");
     e.preventDefault();
-    // Sign in annonymously
+    // Sign in annonymously as guest
     signInAnonymously(auth)
       .then((userAuth) => {
         setUserRegistered(true);
         toast.dismiss(idToast);
-        // toast.update(idToast, {
-        //   render:
-        //     "You are now logged in as guest. Please create an account to use all app features.",
-        //   type: "success",
-        //   isLoading: false,
-        //   autoClose: 5000,
-        //   closeOnClick: true,
-        //   draggable: true,
-        // });
         updateProfile(userAuth.user, {
           displayName: "Guest" + Math.floor(Math.random() * 1000),
-          photoUrl: "./images/guestProfile.jpg",
+          photoURL: "./assets/guestProfile.jpg",
         });
 
         dispatch(
           login({
             uid: userAuth.user.uid,
             displayName: "Guest" + Math.floor(Math.random() * 1000),
-            photoUrl: "./images/guestProfile.jpg",
+            photoUrl: "./assets/guestProfile.jpg",
           })
         );
       })

@@ -57,6 +57,7 @@ const Register = () => {
       image: url,
       isOnline: true,
       memberSince: new Date().toLocaleString(),
+      lastTimeOnline: new Date().toLocaleString(),
     });
   };
   const metadata = { contentType: "image/jpeg " };
@@ -118,14 +119,6 @@ const Register = () => {
           displayName: name,
           photoURL: url,
         }).then(
-          // toast.update(idToast, {
-          //   render: "User created successfully",
-          //   type: "success",
-          //   isLoading: false,
-          //   autoClose: 2000,
-          //   closeOnClick: true,
-          //   draggable: true,
-          // }),
           dispatch(
             login({
               email: userAuth.user.email,

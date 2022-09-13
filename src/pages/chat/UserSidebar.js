@@ -8,16 +8,19 @@ const UserSearchInput = ({ user, handleClickUser }) => {
   const [search, setSearch] = useState("");
   const [userList, setUserList] = useState([]);
 
+  // get users from db and set them to userList state
   const getAllUsers = async () => {
     const querySnapshot = await getDocs(collection(db, "userInfo"));
     const users = querySnapshot.docs.map((doc) => doc.data());
     setUserList(users);
   };
 
+  // get users from db when component mounts and every time user changes
   useEffect(() => {
     getAllUsers();
   }, [user]);
 
+  // search users from firestore db and set them to userList state, if search input is empty or user doesnt exist, set userList to all users
   const handleSearchUsers = async (e) => {
     e.preventDefault();
     const q = query(
@@ -28,16 +31,13 @@ const UserSearchInput = ({ user, handleClickUser }) => {
     try {
       const querySnapshot = await getDocs(q);
       const users = querySnapshot.docs.map((doc) => doc.data());
-      if (users.length > 0) {
-        setUserList(users);
-      } else {
+      if (!users.length > 0 || search === "") {
         getAllUsers();
+      } else {
+        setUserList(users);
       }
     } catch (error) {
       console.log(error);
-    }
-    if (search === "") {
-      getAllUsers();
     }
   };
 

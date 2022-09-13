@@ -23,7 +23,6 @@ const dropIn = {
 };
 
 const Modal = ({ user, setOpenModal }) => {
-  console.log(user);
   return (
     <Backdrop onClick={() => setOpenModal(false)}>
       <motion.div
@@ -54,7 +53,21 @@ const Modal = ({ user, setOpenModal }) => {
                 #{user.uid.replace(/[^0-9]/g, "")}
               </span>
             </p>
+
             <p>{user.email}</p>
+            {user.hasOwnProperty("isOnline") ? (
+              <p>
+                Last seen:{" "}
+                <span
+                  className={`${
+                    user.isOnline ? "text-green-500" : "text-white"
+                  }`}>
+                  {user.isOnline ? "Currently online" : user.lastTimeOnline}
+                </span>
+              </p>
+            ) : (
+              ""
+            )}
             {user.memberSince ? (
               <>
                 <p className="mt-5 font-medium">member since:</p>

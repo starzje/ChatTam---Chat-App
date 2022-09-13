@@ -16,6 +16,7 @@ import Register from "./pages/Home/Register";
 import { AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function App() {
           </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <ToastContainer
           position="top-center"

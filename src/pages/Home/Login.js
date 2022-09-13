@@ -43,6 +43,7 @@ function Login() {
         updateDoc(doc(db, "userInfo", docSnapShot.id), {
           ...docSnapShot.data(),
           isOnline: true,
+          lastTimeOnline: new Date().toLocaleString(),
         });
       } catch (error) {
         console.log(error);

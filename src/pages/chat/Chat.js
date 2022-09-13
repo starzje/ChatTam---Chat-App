@@ -49,6 +49,8 @@ const Homepage = () => {
     return () => unsubscribe();
   }, []);
 
+  // console.log(user);
+
   const handleClickUser = (user) => {
     setSingleUserInfo(user);
     setOpenModal(true);

@@ -6,7 +6,7 @@ const style = {
   message: ` flex items-center shadow-xl my-5 mx-3 py-2 relative px-4 rounded-tl-full rounded-tr-full `,
   sent: `bg-primary-violet text-white rounded-tr-full float-right rounded-bl-full  rounded-br-none`,
   received: ` bg-secondary-violet text-white  float-left  rounded-tl-full rounded-bl-none rounded-br-full`,
-  name: `absolute  mt-[-4rem] mb-3 mx-2  text-white text-xs`,
+  name: `absolute  mt-[-4rem] w-full mb-3 mx-2  text-white text-xs`,
 };
 
 // message styling depending on who sent the message
@@ -18,8 +18,8 @@ const Message = ({ message, image }) => {
 
   const nameClass =
     message.uid === auth.currentUser?.uid
-      ? ` ${style.name} right-0`
-      : `${style.name} left-0`;
+      ? ` ${style.name} right-0 text-right`
+      : `${style.name} left-0 text-left`;
 
   const userImages = image.map((image) => {
     if (image.uid === message.uid && image !== undefined) {
