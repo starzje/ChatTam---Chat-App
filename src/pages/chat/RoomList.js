@@ -7,9 +7,9 @@ import Avatar from "react-avatar";
 
 const RoomList = ({ room }) => {
   return (
-    <li className="text-white   list-none" key={uuidv4()}>
+    <li className="text-white list-none" key={uuidv4()}>
       <Link
-        className="flex justify-center  gap-1 overflow-hidden items-center p-3 hover:bg-gray-700"
+        className="flex items-center justify-center gap-1 p-3 overflow-hidden hover:bg-gray-700"
         //helper function to redirect to the correct room because public-room has id called "public-room"
         to={`/chat/${checkRoomId(room.id, room?.data?.name)}`}>
         <Avatar

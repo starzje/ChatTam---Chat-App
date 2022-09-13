@@ -30,8 +30,8 @@ const Homepage = () => {
     <>
       <div className="flex min-h-screen ">
         {/* MOBILE SIDEBAR */}
-        <section className="md:hidden block ">
-          <div className=" absolute top-3 left-5 z-50">
+        <section className="block md:hidden ">
+          <div className="absolute z-50  top-3 left-5">
             <Hamburger
               color="#fff"
               toggled={toggleMobileMenu}
@@ -52,8 +52,8 @@ const Homepage = () => {
             } `}>
             {toggleMobileMenu && (
               <>
-                <div className="bg-secondary-violet text-white text-center pl-20 pr-10 pt-3  pb-5">
-                  <div className="flex gap-3 items-center  justify-start  ">
+                <div className="pt-3 pb-5 pl-20 pr-10 text-center text-white bg-secondary-violet">
+                  <div className="flex items-center justify-start gap-3 ">
                     <UserInfo user={user} />
                   </div>
                 </div>
@@ -61,7 +61,7 @@ const Homepage = () => {
                   <div className="w-1/2">
                     <Rooms />
                   </div>
-                  <div className="min-h-[calc(100vh-6.1rem)] max-h-[calc(100vh-6.1rem)] bg-gradient-to-b from-[#121021] to-[#1c1a31] border-x border-white border-opacity-30  w-full overflow-auto">
+                  <div className="min-h-[calc(100vh-6.1rem)] max-h-[calc(100vh-6.1rem)]  border-x border-white border-opacity-30  w-full overflow-auto">
                     <UserSidebar
                       user={user}
                       handleClickUser={handleClickUser}
@@ -79,7 +79,7 @@ const Homepage = () => {
           )}
         </AnimatePresence>
         {/* DESKTOP SIDEBAR */}
-        <section className="hidden md:block w-1/2">
+        <section className="hidden w-1/2 md:block">
           {/* profile info */}
           <div className="text-white bg-gradient-to-r from-[#1c2232] to-[#18182a] flex justify-center border-opacity-30 items-center p-6 gap-7 border-b border-r  border-white ">
             <UserInfo user={user} handleClickUser={handleClickUser} />
@@ -96,7 +96,7 @@ const Homepage = () => {
           </div>
         </section>
         {/* chat */}
-        <section className="bg-hero-pattern bg-cover w-full min-h-screen ">
+        <section className="w-full min-h-screen bg-cover bg-hero-pattern ">
           <DynamicChatPage />
         </section>
       </div>

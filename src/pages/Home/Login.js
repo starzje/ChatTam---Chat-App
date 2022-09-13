@@ -98,7 +98,7 @@ function Login() {
       initial="hidden"
       animate="visible"
       exit="exit"
-      className="min-h-screen flex flex-col justify-center items-center overflow-hidden">
+      className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
       {/* LOGIN MODAL*/}
       <motion.div
         variants={formModalAnimation}
@@ -106,8 +106,8 @@ function Login() {
         animate="visible"
         exit="exit"
         className=" shadow-2xl min-w-[25em] ">
-        <div className="bg-gradient-dark-r py-3 rounded-t-3xl w-full opacity-60 ">
-          <h4 className="text-white  tracking-wide font-semibold text-center">
+        <div className="w-full py-3 bg-gradient-dark-r rounded-t-3xl opacity-60 ">
+          <h4 className="font-semibold tracking-wide text-center text-white">
             #LOGIN
           </h4>
         </div>
@@ -128,19 +128,19 @@ function Login() {
             />
           </form>
           {/* REGISTER LINK */}
-          <div className="text-center mt-10">
+          <div className="mt-10 text-center">
             <span className="text-white ">Not a member? </span>
             <Link
-              className="pl-1 text-primary-hover transition duration-300 hover:text-primary-violet "
+              className="pl-1 transition duration-300 text-primary-hover hover:text-primary-violet "
               to="/register">
               register here
             </Link>
           </div>
           {/* HOMEPAEG LINK */}
-          <div className="text-center mt-1">
+          <div className="mt-1 text-center">
             <span className="text-white ">Back to </span>
             <Link
-              className="pl-1 text-primary-hover transition duration-300 hover:text-primary-violet"
+              className="pl-1 transition duration-300 text-primary-hover hover:text-primary-violet"
               to="/">
               Homepage
             </Link>

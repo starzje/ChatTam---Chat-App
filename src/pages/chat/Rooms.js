@@ -60,13 +60,13 @@ const Rooms = () => {
     <div className="max-h-[calc(100vh-6.1rem)]   overflow-y-auto overflow-x-hidden">
       <form className="text-black" onSubmit={createNewRoom}>
         <input
-          className="bg-transparent border-b border-white border-opacity-30 p-3 text-white w-full focus:outline-none"
+          className="w-full p-3 text-white bg-transparent border-b border-white border-opacity-30 focus:outline-none"
           type="text"
           placeholder="room name..."
           value={roomInputField}
           onChange={(e) => setRoomInputField(e.target.value)}
         />
-        <button className="w-full bg-secondary-violet py-2 border-b border-white border-opacity-30 border-y text-white hover:bg-secondary-hover">
+        <button className="w-full py-2 text-white border-b border-white bg-secondary-violet border-opacity-30 border-y hover:bg-secondary-hover">
           Add Room
         </button>
       </form>

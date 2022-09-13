@@ -31,16 +31,16 @@ const SendMessage = ({ scroll, roomId }) => {
   return (
     <div
       className={`mt-auto pt-6 z-20 bg-hero-pattern bg-cover bg-bottom fixed bottom-0 w-full md:w-[65%] 2xl:w-[65.7%] pb-7 px-5 md:px-20`}>
-      <form onSubmit={sendMessage} className=" w-full flex text-xl ">
+      <form onSubmit={sendMessage} className="flex w-full text-xl ">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="w-full text-base p-3 bg-transparent text-white border rounded-2xl border-white border-opacity-30 h-14 placeholder-white placeholder-opacity-40 font-light focus:outline-none"
+          className="w-full p-3 text-base font-light text-white placeholder-white bg-transparent border border-white rounded-2xl border-opacity-30 h-14 placeholder-opacity-40 focus:outline-none"
           type="text"
           placeholder="Write a message..."
         />
         <button className="w-[10%] md:ml-0 ml-2">
-          <MdSend className="text-4xl hover:text-primary-hover text-primary-violet w-full" />
+          <MdSend className="w-full text-4xl hover:text-primary-hover text-primary-violet" />
         </button>
       </form>
     </div>

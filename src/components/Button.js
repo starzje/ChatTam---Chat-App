@@ -1,5 +1,5 @@
 const Button = ({ text, icon, handleClick }) => (
-  <button onClick={handleClick} className="btn-purple tracking-wider uppercase">
+  <button onClick={handleClick} className="tracking-wider uppercase btn-purple">
     {text}
     {icon}
   </button>

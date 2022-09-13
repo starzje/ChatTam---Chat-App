@@ -43,18 +43,18 @@ const UserSearchInput = ({ user, handleClickUser }) => {
 
   return (
     <>
-      <div className="mb-5  ">
-        <form onSubmit={handleSearchUsers} className="flex  w-full">
+      <div className="mb-5 ">
+        <form onSubmit={handleSearchUsers} className="flex w-full">
           <input
             onChange={(e) => setSearch(e.target.value)}
-            className="bg-transparent border-b border-white border-opacity-30 p-3 text-white w-full focus:outline-none"
+            className="w-full p-3 text-white bg-transparent border-b border-white border-opacity-30 focus:outline-none"
             type="text"
             placeholder="search user"
           />
           <button
             onClick={handleSearchUsers}
             type="submit"
-            className="w-32 bg-secondary-violet border-b border-white border-opacity-30 border-l text-white hover:bg-secondary-hover">
+            className="w-32 text-white border-b border-l border-white bg-secondary-violet border-opacity-30 hover:bg-secondary-hover">
             Search
           </button>
         </form>

@@ -55,7 +55,7 @@ const UserInfo = ({ user, handleClickUser }) => {
           </div>
           <h2>
             Hello{" "}
-            <span className="text-violet-400 font-semibold">
+            <span className="font-semibold text-violet-400">
               {user.displayName}
             </span>{" "}
           </h2>

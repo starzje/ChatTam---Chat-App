@@ -62,11 +62,11 @@ const Homepage = () => {
       variants={exitAnimationHero}
       exit="exit"
       className="overflow-hidden">
-      <header className="container flex justify-start items-center">
-        <h1 className="text-white pt-8 text-xl font-semibold ">ChatTam.</h1>
+      <header className="container flex items-center justify-start">
+        <h2 className="pt-8 text-xl font-semibold text-white ">ChatTam.</h2>
       </header>
       {/* hero */}
-      <main className="mt-10 2xl:mt-24 lg:mt-7 justify-between container flex flex-col md:flex-row items-center">
+      <main className="container flex flex-col items-center justify-between mt-10 2xl:mt-24 lg:mt-7 md:flex-row">
         {/* left side */}
         <motion.section
           variants={fadeInAnimation}
@@ -76,7 +76,7 @@ const Homepage = () => {
           <h1 className=" max-w-full lg:max-w-md 2xl:max-w-full text-3xl lg:text-4xl 2xl:text-[3rem] font-semibold text-center md:text-left text-white leading-[3rem] 2xl:leading-[4.5rem] lg:leading-[3.5rem] mb-5">
             The only chat app you will ever need...
           </h1>
-          <p className="text-center md:text-left font-extralight text-xl 2xl:text-3xl lg:text-xl text-white">
+          <p className="text-xl text-center text-white md:text-left font-extralight 2xl:text-3xl lg:text-xl">
             Make an account and start chatting today!
           </p>
           <div className="mt-10 2xl:max-w-xl lg:max-w-[22em]">
@@ -88,7 +88,7 @@ const Homepage = () => {
                 delay: 0.5,
                 ease: "easeInOut",
               }}
-              className="flex gap-7 2xl:mb-7 mb-5">
+              className="flex mb-5 gap-7 2xl:mb-7">
               <Link className="btn-purple" to="../login">
                 Login <FaSignInAlt />
               </Link>

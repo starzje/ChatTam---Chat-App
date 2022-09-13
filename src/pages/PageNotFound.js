@@ -4,15 +4,15 @@ import { FaSignOutAlt } from "react-icons/fa";
 
 const PageNotFound = () => {
   return (
-    <div className="bg-404-pattern bg-cover bg-center flex justify-end items-center h-screen flex-col  pb-10">
+    <div className="flex flex-col items-center justify-end h-screen pb-10 bg-center bg-cover bg-404-pattern">
       <h3 className="text-white text-[3rem] font-bold leading-none">
         404 ERROR!
       </h3>
-      <p className="text-white font-light tracking-wider mt-2 text-xl">
+      <p className="mt-2 text-xl font-light tracking-wider text-white">
         Looks like you're lost in space
       </p>
       <Link
-        className="bg-primary-violet mt-5 flex justify-center items-center gap-2 text-white text-center hover:bg-primary-hover py-2 px-20 rounded-xl transition duration-300 "
+        className="flex items-center justify-center gap-2 px-20 py-2 mt-5 text-center text-white transition duration-300 bg-primary-violet hover:bg-primary-hover rounded-xl "
         to="/">
         Go back Home
         <FaSignOutAlt />

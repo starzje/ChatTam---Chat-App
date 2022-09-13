@@ -50,14 +50,14 @@ function DynamicChatPage() {
   }, [id]);
 
   return (
-    <div className="h-screen bg-hero-pattern bg-cover bg-no-repeat bg-center  overflow-auto flex flex-col">
-      <div className="z-10 flex mb-20 overflow-ellipsis flex-col  relative">
+    <div className="flex flex-col h-screen overflow-auto bg-center bg-no-repeat bg-cover bg-hero-pattern">
+      <div className="relative z-10 flex flex-col mb-20 overflow-ellipsis">
         <div className="w-full p-10 bg-gradient-to-r from-[#111826] to-[#1e1232] bg-opacity-70">
           <h2 className="text-[#4E7AA8] text-center md:text-left uppercase font-semibold text-4xl">
             #{id ? id : "public-room"}
           </h2>
         </div>
-        <div className="p-3 flex flex-col mt-1">
+        <div className="flex flex-col p-3 mt-1">
           {messages &&
             messages.map((message, index) => (
               <Message key={index} message={message} image={image} />

@@ -6,7 +6,7 @@ const UserList = ({ user, handleClickUser }) => {
       onClick={() => handleClickUser(user)}
       key={user.uid}
       id={user.uid}
-      className="flex text-white items-center space-x-3 mb-2 hover:bg-primary-violet cursor-pointer p-2  transition duration-200 overflox-y-auto">
+      className="flex items-center p-2 mb-2 space-x-3 text-white transition duration-200 cursor-pointer hover:bg-primary-violet overflox-y-auto">
       <Avatar
         src={user.image}
         name={user.name}
@@ -14,14 +14,14 @@ const UserList = ({ user, handleClickUser }) => {
         round={true}
         textSizeRatio={1.5}
       />
-      <p className="whitespace-nowrap  break-words text-ellipsis overflow-x-hidden ">
+      <p className="overflow-x-hidden break-words whitespace-nowrap text-ellipsis ">
         {user.name}
       </p>
 
       {user.isOnline ? (
-        <div className="bg-green-500 h-3 w-3 rounded-full"></div>
+        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
       ) : (
-        <div className="bg-red-500 h-3 w-3 rounded-full"></div>
+        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
       )}
     </li>
   );

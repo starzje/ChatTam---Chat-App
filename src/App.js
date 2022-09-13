@@ -41,7 +41,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="bg-hero-pattern bg-cover min-h-screen">
+    <div className="min-h-screen bg-cover bg-hero-pattern">
       <AnimatePresence exitBeforeEnter>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Homepage />} />
