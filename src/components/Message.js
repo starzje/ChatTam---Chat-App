@@ -21,6 +21,7 @@ const Message = ({ message, image }) => {
       ? ` ${style.name} right-0 text-right`
       : `${style.name} left-0 text-left`;
 
+  // map through all images and match the image to the user who sent the message
   const userImages = image.map((image) => {
     if (image.uid === message.uid && image !== undefined) {
       return image.image;
@@ -29,6 +30,7 @@ const Message = ({ message, image }) => {
     }
   });
 
+  // filter out a single image out of matched images
   const singleUserImage = userImages.filter((image) => image !== null);
 
   return (

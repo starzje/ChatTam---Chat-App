@@ -10,6 +10,7 @@ const RoomList = ({ room }) => {
     <li className="text-white   list-none" key={uuidv4()}>
       <Link
         className="flex justify-center  gap-1 overflow-hidden items-center p-3 hover:bg-gray-700"
+        //helper function to redirect to the correct room because public-room has id called "public-room"
         to={`/chat/${checkRoomId(room.id, room?.data?.name)}`}>
         <Avatar
           src={room?.data?.image}

@@ -1,33 +1,15 @@
+import Backdrop from "./Backdrop";
 import Avatar from "react-avatar";
 import { IoClose } from "react-icons/io5";
 import { motion } from "framer-motion";
-import Backdrop from "./Backdrop";
-
-//modal animation
-const dropIn = {
-  hidden: {
-    opacity: 0,
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      duration: 0.5,
-      type: "spring",
-      damping: 25,
-      stiffness: 500,
-    },
-  },
-  exit: {
-    opacity: 0,
-  },
-};
+import { modalAnimation } from "../helpers/animations";
 
 const Modal = ({ user, setOpenModal }) => {
   return (
     <Backdrop onClick={() => setOpenModal(false)}>
       <motion.div
         onClick={(e) => e.stopPropagation()}
-        variants={dropIn}
+        variants={modalAnimation}
         initial="hidden"
         animate="visible"
         exit="exit"
@@ -46,14 +28,12 @@ const Modal = ({ user, setOpenModal }) => {
             <p className="text-3xl font-bold break-words max-w-xs ">
               {user.name ? user.name : user.displayName}
             </p>
-
             <p>
               user id:{" "}
               <span className="font-light">
                 #{user.uid.replace(/[^0-9]/g, "")}
               </span>
             </p>
-
             <p>{user.email}</p>
             {user.hasOwnProperty("isOnline") ? (
               <p>

@@ -59,6 +59,7 @@ const UserSearchInput = ({ user, handleClickUser }) => {
           </button>
         </form>
       </div>
+      {/* map through all users and display them on the sidebar */}
       {userList.map((user) => {
         return (
           <UserList

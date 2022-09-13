@@ -1,6 +1,8 @@
 import { useState } from "react";
+//firebase
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "./../firebase";
+//npm utility
 import { MdSend } from "react-icons/md";
 import { toast } from "react-toastify";
 
@@ -14,7 +16,6 @@ const SendMessage = ({ scroll, roomId }) => {
       toast.warn("Please enter a message");
       return;
     }
-
     // add message to the firestore database, rooms and messages collection
     const { uid, displayName } = auth.currentUser;
     await addDoc(collection(db, "rooms", roomId, "messages"), {

@@ -1,4 +1,4 @@
-import { db } from "../../firebase";
+import { db, auth } from "../../firebase";
 import {
   doc,
   updateDoc,
@@ -7,12 +7,13 @@ import {
   where,
   getDocs,
 } from "firebase/firestore";
-import { auth } from "../../firebase";
+// utiltiy npm
 import Avatar from "react-avatar";
 import { toast } from "react-toastify";
 import { FaSignOutAlt } from "react-icons/fa";
 
 const UserInfo = ({ user, handleClickUser }) => {
+  // change online status to false and update last time online, then sign user out
   const logoutOfApp = async () => {
     const idToast = toast.loading("Signing out...");
     const q = query(collection(db, "userInfo"), where("uid", "==", user.uid));
@@ -32,7 +33,7 @@ const UserInfo = ({ user, handleClickUser }) => {
       }
     });
   };
-
+  // if user is guest, just sign out
   const guestLogout = () => {
     auth.signOut();
   };
@@ -83,7 +84,8 @@ const UserInfo = ({ user, handleClickUser }) => {
           <div>
             <p className="font-semibold ">{user.displayName}</p>
             <p className="font-light text-center">
-              #{user.uid.replace(/[^0-9]/g, "")}
+              {/* just return numbers for ID */}#
+              {user.uid.replace(/[^0-9]/g, "")}
             </p>
           </div>
 

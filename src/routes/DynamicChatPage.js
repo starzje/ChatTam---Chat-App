@@ -8,11 +8,24 @@ import { useParams } from "react-router-dom";
 import Message from "../components/Message";
 import SendMessage from "../components/SendMessage";
 
-function DynamicPage() {
+function DynamicChatPage() {
   const scroll = useRef(null);
   const { id } = useParams();
-  const [image, setImage] = useState([""]);
   const [messages, setMessages] = useState([]);
+  const [image, setImage] = useState([""]);
+
+  // get user images from DB
+  useEffect(() => {
+    const q = query(collection(db, "userInfo"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      let image = [];
+      querySnapshot.forEach((doc) => {
+        image.push({ ...doc.data(), id: doc.id });
+      });
+      setImage(image);
+    });
+    return () => unsubscribe();
+  }, []);
 
   // get all messages from id param url and display them only in that url
   useEffect(() => {
@@ -36,19 +49,6 @@ function DynamicPage() {
     }
   }, [id]);
 
-  // fetch user profile picture for different chats
-  useEffect(() => {
-    const q = query(collection(db, "userInfo"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let image = [];
-      querySnapshot.forEach((doc) => {
-        image.push({ ...doc.data(), id: doc.id });
-      });
-      setImage(image);
-    });
-    return () => unsubscribe();
-  }, []);
-
   return (
     <div className="h-screen bg-hero-pattern bg-cover bg-no-repeat bg-center  overflow-auto flex flex-col">
       <div className="z-10 flex mb-20 overflow-ellipsis flex-col  relative">
@@ -70,4 +70,4 @@ function DynamicPage() {
   );
 }
 
-export default DynamicPage;
+export default DynamicChatPage;

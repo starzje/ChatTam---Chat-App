@@ -12,11 +12,11 @@ import Chat from "./pages/chat/Chat";
 import Homepage from "./pages/Home/Homepage";
 import Login from "./pages/Home/Login";
 import Register from "./pages/Home/Register";
+import PageNotFound from "./pages/PageNotFound";
 // utility npm
 import { AnimatePresence } from "framer-motion";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();

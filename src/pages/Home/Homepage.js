@@ -1,18 +1,28 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+//firebase
 import { auth, signInAnonymously, updateProfile } from "../../firebase";
-import { useDispatch, useSelector } from "react-redux";
+// redux and react-router-dom
 import { login, selectUser } from "../../store/features/userSlice";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
+//npm utils
 import { toast } from "react-toastify";
 import { FaUserPlus, FaSignInAlt, FaUserCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
+//helpers
+import {
+  fadeInAnimation,
+  buttonAnimation,
+  imageAnimation,
+  exitAnimationHero,
+} from "../../helpers/animations";
 
 const Homepage = () => {
   const [userRegistered, setUserRegistered] = useState(false);
   const { user } = useSelector(selectUser);
   const navigate = useNavigate();
 
+  //if user is logged in, redirect to chat
   useEffect(() => {
     if (user !== null) {
       navigate(`/chat`);
@@ -46,9 +56,11 @@ const Homepage = () => {
         alert(err);
       });
   };
+
   return (
     <motion.div
-      exit={{ opacity: 0, x: "-100vw", transition: { duration: 0.7 } }}
+      variants={exitAnimationHero}
+      exit="exit"
       className="overflow-hidden">
       <header className="container flex justify-start items-center">
         <h1 className="text-white pt-8 text-xl font-semibold ">ChatTam.</h1>
@@ -57,13 +69,9 @@ const Homepage = () => {
       <main className="mt-10 2xl:mt-24 lg:mt-7 justify-between container flex flex-col md:flex-row items-center">
         {/* left side */}
         <motion.section
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{
-            duration: 1,
-            ease: "easeInOut",
-            staggerChildren: 0.5,
-          }}
+          variants={fadeInAnimation}
+          initial="hidden"
+          animate="visible"
           className="w-full md:w-1/2 ">
           <h1 className=" max-w-full lg:max-w-md 2xl:max-w-full text-3xl lg:text-4xl 2xl:text-[3rem] font-semibold text-center md:text-left text-white leading-[3rem] 2xl:leading-[4.5rem] lg:leading-[3.5rem] mb-5">
             The only chat app you will ever need...
@@ -94,13 +102,9 @@ const Homepage = () => {
               </Link>
             </motion.div>
             <motion.button
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.3,
-                delay: 0.5,
-                ease: "easeInOut",
-              }}
+              variants={buttonAnimation}
+              initial="hidden"
+              animate="visible"
               className="bg-secondary-violet flex justify-center items-center font-medium tracking-wide uppercase gap-2 hover:bg-secondary-hover transition duration-300  rounded-xl text-white py-2 w-full"
               type="submit"
               onClick={handleGuestLogin}>
@@ -111,12 +115,9 @@ const Homepage = () => {
         </motion.section>
         {/* right side */}
         <motion.section
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{
-            duration: 1,
-            ease: "easeInOut",
-          }}
+          variants={imageAnimation}
+          initial="hidden"
+          animate="visible"
           className="mt-20 md:mt-0">
           <img
             loading="lazy"

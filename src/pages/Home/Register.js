@@ -18,6 +18,16 @@ import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { FaUserPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
+//helpers
+import {
+  formPageLoadingAnimation,
+  formModalAnimation,
+} from "../../helpers/animations";
+import {
+  validateRegistrationForm,
+  validateUsernameInput,
+  validateUsernameLength,
+} from "../../helpers/formValidation";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -65,29 +75,12 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name === "" || password === "" || email === "") {
-      // set timeout to the message
-      errorFeedback.current.innerHTML = "Please fill in all the fields";
-      errorFeedback.current.style.display = "block";
-      setTimeout(() => {
-        errorFeedback.current.style.display = "none";
-      }, 5000);
-
-      toast.warn("Please fill in all the fields");
+      validateUsernameInput(errorFeedback, toast);
+      return;
+    } else if (name.length < 3 || name.length > 20) {
+      validateUsernameLength(errorFeedback, toast);
       return;
     }
-
-    // check username length
-    if (name.length < 3 || name.length > 20) {
-      errorFeedback.current.innerHTML =
-        "Username must be between 3 and 20 characters";
-      errorFeedback.current.style.display = "block";
-      setTimeout(() => {
-        errorFeedback.current.style.display = "none";
-      }, 5000);
-      toast.warn("Username must be between 3 and 20 characters");
-      return;
-    }
-
     const idToast = toast.loading("Creating user...");
     // if image exists, upload image to firebase storage and pass the URL to handleRegister function, else pass empty string
     if (image) {
@@ -131,47 +124,22 @@ const Register = () => {
       })
       .catch((err) => {
         toast.dismiss(idToast);
-        errorFeedback.current.style.display = "block";
-        setTimeout(() => {
-          errorFeedback.current.style.display = "none";
-        }, 3000);
-        if (err.code === "auth/invalid-email") {
-          toast.error("Invalid email");
-          errorFeedback.current.innerHTML = "Invalid email";
-        } else if (err.code === "auth/email-already-in-use") {
-          toast.error("Email already in use");
-          errorFeedback.current.innerHTML = "Email already in use";
-        } else if (err.code === "auth/internal-error") {
-          toast.error("Please enter correct information");
-          errorFeedback.current.innerHTML = "Please enter correct information";
-        } else if (err.code === "auth/weak-password") {
-          toast.error("Password must be at least 6 characters");
-          errorFeedback.current.innerHTML =
-            "Password must be at least 6 characters";
-        } else {
-          toast.error(err.message);
-        }
+        validateRegistrationForm(err, errorFeedback, toast);
       });
   };
 
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{ opacity: 1 }}
-      duration={0.2}
-      exit={{ opacity: 0 }}
-      transition={{ type: "tween", duration: 0.8 }}
+      variants={formPageLoadingAnimation}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
       className="min-h-screen  flex flex-col justify-center items-center scroll overflow-hidden">
       <motion.div
-        initial={{
-          opacity: 0,
-          x: 100,
-        }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -100 }}
-        transition={{ duration: 0.5 }}
+        variants={formModalAnimation}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
         className=" shadow-2xl min-w-[27em]">
         <div className="bg-gradient-to-r from-[#252e47] to-[#1c1c32] py-3 rounded-t-3xl w-full opacity-60 ">
           <h4 className="text-white  tracking-wide font-semibold text-center">

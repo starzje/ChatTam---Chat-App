@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
-//firebase
-import { query, collection, orderBy, onSnapshot } from "firebase/firestore";
-import { db } from "../../firebase";
+import { useState } from "react";
 // redux and react-router-dom
 import { selectUser } from "../../store/features/userSlice";
 import { useSelector } from "react-redux";
-import DynamicChatPage from "../../routes/DynamicChatPage";
 // components
+import DynamicChatPage from "../../routes/DynamicChatPage";
 import Rooms from "./Rooms";
 import Modal from "../../components/Modal";
 import UserInfo from "./UserInfo";
@@ -14,43 +11,16 @@ import UserSidebar from "./UserSidebar";
 // util npm package
 import { AnimatePresence, motion } from "framer-motion";
 import { Sling as Hamburger } from "hamburger-react";
+//helpers
+import { fadeInMobileAnimation } from "../../helpers/animations";
 
 const Homepage = () => {
   const { user } = useSelector(selectUser);
-  const [image, setImage] = useState([""]);
-  const [messages, setMessages] = useState([]);
   const [singleUserInfo, setSingleUserInfo] = useState([""]);
   const [openModal, setOpenModal] = useState(false);
   const [toggleMobileMenu, setToggleMobileMenu] = useState(false);
 
-  // get all messages from DB
-  useEffect(() => {
-    const q = query(collection(db, "messages"), orderBy("timestamp"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let messages = [];
-      querySnapshot.forEach((doc) => {
-        messages.push({ ...doc.data(), id: doc.id });
-      });
-      setMessages(messages);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  // fetch user information
-  useEffect(() => {
-    const q = query(collection(db, "userInfo"));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let image = [];
-      querySnapshot.forEach((doc) => {
-        image.push({ ...doc.data(), id: doc.id });
-      });
-      setImage(image);
-    });
-    return () => unsubscribe();
-  }, []);
-
-  // console.log(user);
-
+  // on click open modal and sent current user information to singleuserinfo state
   const handleClickUser = (user) => {
     setSingleUserInfo(user);
     setOpenModal(true);
@@ -69,17 +39,14 @@ const Homepage = () => {
             />
           </div>
           <motion.div
-            initial={{ x: "-100%", opacity: 0 }}
+            variants={fadeInMobileAnimation}
+            initial="hidden"
             animate={{
               x: toggleMobileMenu ? "0" : "-100%",
               opacity: toggleMobileMenu ? 1 : 0,
+              transition: { duration: 0.5 },
             }}
-            exit={{
-              x: "-100%",
-              opacity: 0,
-            }}
-            transition={{ duration: 0.5 }}
-            ease="easeInOut"
+            exit="exit"
             className={` absolute z-40 w-full  left-0 top-0 ${
               toggleMobileMenu ? "block" : "hidden "
             } `}>
@@ -130,7 +97,7 @@ const Homepage = () => {
         </section>
         {/* chat */}
         <section className="bg-hero-pattern bg-cover w-full min-h-screen ">
-          <DynamicChatPage messages={messages} image={image} />
+          <DynamicChatPage />
         </section>
       </div>
     </>

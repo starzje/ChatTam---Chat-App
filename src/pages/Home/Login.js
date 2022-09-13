@@ -17,6 +17,12 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaSignInAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+//helpers
+import {
+  formPageLoadingAnimation,
+  formModalAnimation,
+} from "../../helpers/animations";
+import { validateLoginForm } from "../../helpers/formValidation";
 
 function Login() {
   const dispatch = useDispatch();
@@ -79,40 +85,23 @@ function Login() {
 
       .catch((err) => {
         toast.dismiss(idToast);
-        if (err.code === "auth/invalid-email") {
-          toast.error("Invalid email");
-        } else if (err.code === "auth/internal-error") {
-          toast.warning("Please enter correct information");
-        } else if (err.code === "auth/user-not-found") {
-          toast.error("User does not exist");
-        } else if (err.code === "auth/wrong-password") {
-          toast.error("Password is incorrect");
-        } else {
-          toast.error(err.message);
-        }
+        validateLoginForm(err, toast);
       });
   };
 
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-      }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      duration={0.2}
-      ease="easeInOut"
+      variants={formPageLoadingAnimation}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
       className="min-h-screen flex flex-col justify-center items-center overflow-hidden">
       {/* LOGIN MODAL*/}
       <motion.div
-        initial={{
-          opacity: 0,
-          x: 100,
-        }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -100 }}
-        transition={{ duration: 0.5 }}
+        variants={formModalAnimation}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
         className=" shadow-2xl min-w-[25em] ">
         <div className="bg-gradient-to-r from-[#252e47] to-[#1c1c32] py-3 rounded-t-3xl w-full opacity-60 ">
           <h4 className="text-white  tracking-wide font-semibold text-center">
