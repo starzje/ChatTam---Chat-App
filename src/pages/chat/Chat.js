@@ -41,11 +41,7 @@ const Homepage = () => {
           <motion.div
             variants={fadeInMobileAnimation}
             initial="hidden"
-            animate={{
-              x: toggleMobileMenu ? "0" : "-100%",
-              opacity: toggleMobileMenu ? 1 : 0,
-              transition: { duration: 0.5 },
-            }}
+            animate={toggleMobileMenu ? "open" : "closed"}
             exit="exit"
             className={` absolute z-40 w-full  left-0 top-0 ${
               toggleMobileMenu ? "block" : "hidden "
