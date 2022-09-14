@@ -4,6 +4,8 @@
 
 Application used to chat live with your friends!
 
+Check it out online: https://chat-app-algebra.web.app/
+
 ## Tech Stack
 
 **Frontend:** React, Redux, TailwindCSS, FramerMotion
