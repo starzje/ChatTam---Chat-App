@@ -38,6 +38,7 @@ const Homepage = () => {
               toggle={() => setToggleMobileMenu((prev) => !prev)}
             />
           </div>
+
           <motion.div
             variants={fadeInMobileAnimation}
             initial="hidden"
